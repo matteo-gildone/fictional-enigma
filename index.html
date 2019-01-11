@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="apple-touch-icon" href="icon.png" />
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+
+  <body>
+    <!--[if lte IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div
+      id="survey-container"
+      data-survey
+      data-doi="d41586-018-07659-5"
+      data-article-type="News"
+      data-shuffle="true"
+      data-title="Help us to improve our browsing experience"
+      data-question="How would you categorize the content you just read?"
+      data-more-option="true"
+      data-options="News, Opinion, Research analysis, Careers, Books & culture, Research"
+    ></div>
+
+    <script src="js/main.js"></script>
+
+    <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+    <!-- <script>
+    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto'); ga('send', 'pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async defer></script> -->
+    <script>
+      window.surveyList = window.surveyList || [];
+      function polluting(data) {
+        surveyList.push(data);
+      }
+      var js = document.createElement("script");
+      js.type = "text/javascript";
+      js.src = "./js/index.next.iief.js";
+      js.async = true;
+      document.body.appendChild(js);
+
+      Array.prototype.slice
+        .call(document.querySelectorAll("[data-survey]"))
+        .forEach(function(element) {
+          const data = element.dataset;
+          polluting({
+            container: element,
+            survey: {
+              doi: data.doi,
+              articleType: data.articleType,
+              id: "poll-" + data.doi,
+              shuffle: data.shuffle,
+              title: data.title,
+              question: data.question,
+              moreOption: data.moreOption,
+              options: data.options.split(", ")
+            }
+          });
+        });
+    </script>
+  </body>
+</html>
