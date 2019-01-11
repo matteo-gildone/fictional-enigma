@@ -13,7 +13,12 @@
     <link rel="manifest" href="site.webmanifest" />
     <link rel="apple-touch-icon" href="icon.png" />
     <!-- Place favicon.ico in the root directory -->
-
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/main.css" />
   </head>
@@ -28,30 +33,115 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div
-      id="survey-container"
-      data-survey
-      data-doi="d41586-018-07659-5"
-      data-article-type="News"
-      data-shuffle="true"
-      data-title="Help us to improve our browsing experience"
-      data-question="How would you categorize the content you just read?"
-      data-more-option="true"
-      data-options="News, Opinion, Research analysis, Careers, Books & culture, Research"
-    ></div>
 
-    <div
-      id="survey-container"
-      data-survey
-      data-doi="d41586-018-07659-52"
-      data-article-type="News"
-      data-shuffle="true"
-      data-title="Help us to improve our browsing experience"
-      data-question="How would you categorize the content you just read?"
-      data-more-option="true"
-      data-options="News 2, Opinion 2, Research analysis 2, Careers 2, Books & culture 2, Research 2"
-    ></div>
-
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Library</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Data</li>
+      </ol>
+    </nav>
+    <img
+      src="http://placehold.jp/1280x350.png"
+      class="img-fluid"
+      alt="1280px250"
+    />
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-8">
+          <p>
+            Next level crucifix post-ironic pickled artisan marfa, asymmetrical
+            3 wolf moon keytar microdosing street art waistcoat normcore
+            knausgaard. Freegan pork belly deep v flannel chambray normcore
+            PBR&B craft beer. Pinterest artisan vexillologist mixtape leggings
+            actually. Letterpress distillery 3 wolf moon woke church-key quinoa
+            freegan humblebrag small batch raw denim ramps tousled fam.
+          </p>
+          <div
+            id="survey-container"
+            data-survey
+            data-doi="d41586-018-07659-5"
+            data-article-type="News"
+            data-shuffle="true"
+            data-title="Help us to improve our browsing experience"
+            data-question="How would you categorize the content you just read?"
+            data-more-option="true"
+            data-options="News, Opinion, Research analysis, Careers, Books & culture, Research"
+          ></div>
+          <p>
+            Lorem ipsum dolor amet pop-up keffiyeh +1 ramps tote bag master
+            cleanse health goth DIY subway tile cardigan blue bottle pork belly
+            sartorial. Whatever locavore fanny pack small batch waistcoat,
+            drinking vinegar succulents vape williamsburg green juice echo park
+            neutra lyft hashtag venmo. Slow-carb portland waistcoat banh mi,
+            health goth food truck gochujang actually. Cloud bread freegan hella
+            woke deep v artisan brunch lyft health goth polaroid 90's XOXO.
+            Chambray neutra brooklyn la croix, banjo schlitz +1 mlkshk helvetica
+            irony cronut street art tbh gastropub. DIY 8-bit kombucha, cloud
+            bread photo booth waistcoat iPhone mumblecore schlitz squid cronut
+            you probably haven't heard of them portland direct trade. Gentrify
+            banh mi organic yr truffaut tbh butcher drinking vinegar vice.
+          </p>
+          <div
+            id="survey-container"
+            data-survey
+            data-doi="d41586-018-07659-52"
+            data-article-type="News"
+            data-shuffle="true"
+            data-title="Help us to improve our browsing experience"
+            data-question="How would you categorize the content you just read?"
+            data-more-option="true"
+            data-options="News 2, Opinion 2, Research analysis 2, Careers 2, Books & culture 2, Research 2"
+          ></div>
+        </div>
+        <div class="col-md-4">
+          <div class="list-group">
+            <a
+              href="#"
+              class="list-group-item list-group-item-action flex-column align-items-start"
+            >
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">List group item heading</h5>
+                <small>3 days ago</small>
+              </div>
+              <p class="mb-1">
+                Donec id elit non mi porta gravida at eget metus. Maecenas sed
+                diam eget risus varius blandit.
+              </p>
+              <small>Donec id elit non mi porta.</small>
+            </a>
+            <a
+              href="#"
+              class="list-group-item list-group-item-action flex-column align-items-start"
+            >
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">List group item heading</h5>
+                <small class="text-muted">3 days ago</small>
+              </div>
+              <p class="mb-1">
+                Donec id elit non mi porta gravida at eget metus. Maecenas sed
+                diam eget risus varius blandit.
+              </p>
+              <small class="text-muted">Donec id elit non mi porta.</small>
+            </a>
+            <a
+              href="#"
+              class="list-group-item list-group-item-action flex-column align-items-start"
+            >
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">List group item heading</h5>
+                <small class="text-muted">3 days ago</small>
+              </div>
+              <p class="mb-1">
+                Donec id elit non mi porta gravida at eget metus. Maecenas sed
+                diam eget risus varius blandit.
+              </p>
+              <small class="text-muted">Donec id elit non mi porta.</small>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
     <!-- <script>
     window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
