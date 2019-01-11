@@ -40,7 +40,17 @@
       data-options="News, Opinion, Research analysis, Careers, Books & culture, Research"
     ></div>
 
-    <script src="js/main.js"></script>
+    <div
+      id="survey-container"
+      data-survey
+      data-doi="d41586-018-07659-52"
+      data-article-type="News"
+      data-shuffle="true"
+      data-title="Help us to improve our browsing experience"
+      data-question="How would you categorize the content you just read?"
+      data-more-option="true"
+      data-options="News 2, Opinion 2, Research analysis 2, Careers 2, Books & culture 2, Research 2"
+    ></div>
 
     <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
     <!-- <script>
@@ -53,11 +63,6 @@
       function polluting(data) {
         surveyList.push(data);
       }
-      var js = document.createElement("script");
-      js.type = "text/javascript";
-      js.src = "./js/index.next.iief.js";
-      js.async = true;
-      document.body.appendChild(js);
 
       Array.prototype.slice
         .call(document.querySelectorAll("[data-survey]"))
@@ -77,6 +82,12 @@
             }
           });
         });
+
+      var js = document.createElement("script");
+      js.type = "text/javascript";
+      js.src = "./js/main.js";
+      js.async = true;
+      document.body.appendChild(js);
     </script>
   </body>
 </html>
