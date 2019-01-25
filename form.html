@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="apple-touch-icon" href="icon.png" />
+    <!-- Place favicon.ico in the root directory -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+
+  <body>
+    <!--[if lte IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Library</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Data</li>
+      </ol>
+    </nav>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-7">
+          <h4 class="mb-3">Polls Creation Tool</h4>
+          <form class="needs-validation mb-4" novalidate="">
+            <fieldset class="form-group">
+              <div class="row">
+                <legend class="col-form-label col-sm-12 pt-0">
+                  Configuration
+                </legend>
+                <div class="col-sm-12">
+                  <div class="custom-control custom-switch">
+                    <input
+                      type="checkbox"
+                      class="custom-control-input"
+                      id="customSwitch1"
+                    />
+                    <label class="custom-control-label" for="customSwitch1"
+                      >Shuffle options</label
+                    >
+                  </div>
+                  <div class="custom-control custom-switch">
+                    <input
+                      type="checkbox"
+                      class="custom-control-input"
+                      id="customSwitch2"
+                    />
+                    <label class="custom-control-label" for="customSwitch2"
+                      >Add "More" field</label
+                    >
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <hr class="mb-4" />
+            <fieldset class="form-group">
+              <div class="row">
+                <legend class="col-form-label col-sm-12 pt-0">
+                  Article information
+                </legend>
+                <div class="col-md-6 mb-3">
+                  <label for="doi">Doi</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="doi"
+                    placeholder=""
+                    value=""
+                    required=""
+                  />
+                  <div class="invalid-feedback">
+                    Valid first name is required.
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="articleType">Article type</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="articleType"
+                    placeholder=""
+                    value=""
+                    required=""
+                  />
+                  <div class="invalid-feedback">
+                    Valid last name is required.
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <hr class="mb-4" />
+            <fieldset class="form-group">
+              <div class="row">
+                <legend class="col-form-label col-sm-12 pt-0">Poll</legend>
+                <div class="col-md-12 mb-3">
+                  <label for="title">Title</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="title"
+                    placeholder=""
+                    value=""
+                    required=""
+                  />
+                  <div class="invalid-feedback">
+                    Valid last name is required.
+                  </div>
+                </div>
+                <div class="col-md-12 mb-3">
+                  <label for="question">Question</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="question"
+                    placeholder=""
+                    value=""
+                    required=""
+                  />
+                  <div class="invalid-feedback">
+                    Valid last name is required.
+                  </div>
+                </div>
+                <div class="col-md-12 mb-3">
+                  <label for="options">Options</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="options"
+                    placeholder=""
+                    value=""
+                    required=""
+                  />
+                  <div class="invalid-feedback">
+                    Valid last name is required.
+                  </div>
+                  <small id="passwordHelpBlock" class="form-text text-muted">
+                    Insert your options comma separated, eg "News, Research
+                    Analysis, Book & Culture"
+                  </small>
+                </div>
+                <div class="col-md-12 mb-3">
+                  <label for="options">Thank you message</label>
+                  <textarea
+                    class="form-control"
+                    id="validationTextarea"
+                    required
+                  ></textarea>
+                  <div class="invalid-feedback">
+                    Valid last name is required.
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="doi"
+                    >Thank you message Link text (Optional)</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="doi"
+                    placeholder=""
+                    value=""
+                    required=""
+                  />
+                  <div class="invalid-feedback">
+                    Valid first name is required.
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="articleType"
+                    >Thank you message Link (Optional)</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="articleType"
+                    placeholder=""
+                    value=""
+                    required=""
+                  />
+                  <div class="invalid-feedback">
+                    Valid last name is required.
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <hr class="mb-4" />
+            <button class="btn btn-primary btn-lg btn-block" type="submit">
+              Generate poll
+            </button>
+          </form>
+        </div>
+        <div class="col-md-5">
+          <h4 class="mb-3">Preview</h4>
+          <div
+            id="survey-container"
+            data-survey=""
+            data-doi="10.1038/d41586-018-00558-9"
+            data-article-type="NEWS"
+            data-shuffle="true"
+            data-title="Help us to improve our browsing experience"
+            data-question="How would you describe the article you just read?"
+            data-more-option="true"
+            data-options="News, Opinion, Research Analysis, Research Explained, Careers, Books &amp; Culture, Research"
+            class="mt40 mb40"
+          >
+            <div class="c-survey">
+              <form id="survey-form">
+                <h1 class="c-survey__title">
+                  Help us to improve our browsing experience
+                </h1>
+                <p class="c-survey__question">
+                  How would you describe the article you just read?
+                </p>
+                <ul class="c-survey__options-container u-clean-list">
+                  <li class="c-survey__item c-survey__checkbox">
+                    <input
+                      id="opt-opinion"
+                      type="radio"
+                      name="option"
+                      value="Opinion"
+                    />
+                    <label for="opt-opinion">Opinion</label>
+                  </li>
+                  <li class="c-survey__item c-survey__checkbox">
+                    <input
+                      id="opt-news"
+                      type="radio"
+                      name="option"
+                      value="News"
+                    />
+                    <label for="opt-news">News</label>
+                  </li>
+                  <li class="c-survey__item c-survey__checkbox">
+                    <input
+                      id="opt-research"
+                      type="radio"
+                      name="option"
+                      value="Research"
+                    />
+                    <label for="opt-research">Research</label>
+                  </li>
+                  <li class="c-survey__item c-survey__checkbox">
+                    <input
+                      id="opt-research-analysis"
+                      type="radio"
+                      name="option"
+                      value="Research Analysis"
+                    />
+                    <label for="opt-research-analysis">Research Analysis</label>
+                  </li>
+                  <li class="c-survey__item c-survey__checkbox">
+                    <input
+                      id="opt-books-and-culture"
+                      type="radio"
+                      name="option"
+                      value="Books &amp; Culture"
+                    />
+                    <label for="opt-books-and-culture"
+                      >Books &amp; Culture</label
+                    >
+                  </li>
+                  <li class="c-survey__item c-survey__checkbox">
+                    <input
+                      id="opt-careers"
+                      type="radio"
+                      name="option"
+                      value="Careers"
+                    />
+                    <label for="opt-careers">Careers</label>
+                  </li>
+                  <li class="c-survey__item c-survey__checkbox">
+                    <input
+                      id="opt-research-explained"
+                      type="radio"
+                      name="option"
+                      value="Research Explained"
+                    />
+                    <label for="opt-research-explained"
+                      >Research Explained</label
+                    >
+                  </li>
+                  <li class="c-survey__item c-survey__checkbox">
+                    <input
+                      id="opt-more"
+                      type="radio"
+                      name="option"
+                      value="opt-more"
+                    />
+                    <label for="opt-more"
+                      ><input id="opt-more-text" type="text" name="option-text"
+                    /></label>
+                  </li>
+                </ul>
+                <button class="c-survey__submit" type="submit">Confirm</button>
+              </form>
+            </div>
+            <hr class="mb-4" />
+            <div
+              id="survey-container"
+              data-survey=""
+              data-doi="10.1038/d41586-018-00558-9"
+              data-article-type="NEWS"
+              data-shuffle="true"
+              data-title="Help us to improve our browsing experience"
+              data-question="How would you describe the article you just read?"
+              data-more-option="true"
+              data-options="News, Opinion, Research Analysis, Research Explained, Careers, Books &amp; Culture, Research"
+              class="mt40 mb40"
+            >
+              <div class="c-survey">
+                <div class="c-survey__feedback">
+                  <h1 class="c-survey__title">
+                    Thanks for your answer, we value your contribution.
+                  </h1>
+                  <p>
+                    <span
+                      >If you would like to help us continue to improve, we
+                      encourage you to </span
+                    ><a
+                      href="https://sndigital.springernature.com/usertesting/#how-to-participate"
+                      rel="noreferrer noopener"
+                      target="_blank"
+                      >sign up to our user panel.</a
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
