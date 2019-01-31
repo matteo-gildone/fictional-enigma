@@ -1,4 +1,4 @@
-export default (container, voted, shuffle, moreOption) => ({
+export default (container, moreOption, shuffle, voted) => ({
   container: container,
   data: {
     vote: voted,

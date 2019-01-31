@@ -1,17 +1,10 @@
 import "jest-dom/extend-expect";
-
-import { tags } from "../html";
-
-const { h1 } = tags;
-
-{
-  /* <h1 class="c-survey__title">Help us to improve our browsing experience</h1> */
-}
+import { viewTitle } from "../poll/views/viewTitle";
 
 test("should render the title markup", () => {
-  const actual = h1({ class: "c-survey__title" })({
-    text: "Test!"
-  });
-  const expected = "Help us to improve our browsing experience";
+  const actual = viewTitle({ data: { title: "Test title!" } });
+  const expected = "Test title!";
+  expect(actual).toHaveClass("c-survey__title");
   expect(actual).toHaveTextContent(expected);
+  expect(actual.tagName).toEqual("H1");
 });

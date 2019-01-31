@@ -1,16 +1,34 @@
-import { noop, shuffle, slugify } from "../utils";
-import { tags } from "../html";
+import { noop, shuffle, slugify } from "../utils.js";
+import { tags } from "../html/index.js";
 
-import { viewTitle } from "./views/viewTitle";
+import { viewTitle } from "./views/viewTitle.js";
+import { viewQuestion } from "./views/viewQuestion.js";
+import { viewSubmitButton } from "./views/viewSubmitButton.js";
+import { viewForm } from "./views/viewForm.js";
 
-const { div, label, input, a, span, form, p, li, ul, button } = tags;
+import { storeVote } from "./middlewares/storeVote.js";
 
-const registerVote = function(state) {
-  const votes = JSON.parse(localStorage.getItem("mago-polls")) || [];
-  votes.push(state.data.doi);
-  localStorage.setItem("mago-polls", JSON.stringify(votes));
+const { div, label, input, a, span, p, li, ul } = tags;
+
+const sendEventToGa = state => {
+  console.log("- ====== -");
+  // window.ga("send", "event", {
+  //   eventCategory: state.data.vote,
+  //   eventAction: state.data.id,
+  //   eventLabel: state.data.doi + ":" + state.data.articleType,
+  //   hitCallback: function() {
+  //     console.log(
+  //       "%c user voted: " + elements.join(", "),
+  //       "color: blue; font-weight: bold;"
+  //     );
+  //   }
+  // });
+  console.log("- ====== -");
 };
 
+const closePoll = state => {
+  Polls.close();
+};
 const isPollVoted = function(doi) {
   const votes = JSON.parse(localStorage.getItem("mago-polls")) || [];
   return votes.indexOf(doi) > -1 ? true : false;
@@ -35,59 +53,6 @@ const focusClosestInputText = function(e) {
   } else {
     parent.querySelector("#opt-more-text").value = "";
   }
-};
-
-const onChange = (objToWatch, onChangeFunction) => {
-  const handler = {
-    set(target, property, value) {
-      Reflect.set(target, property, value);
-      onChangeFunction(target);
-      return true;
-    }
-  };
-  return new Proxy(objToWatch, handler);
-};
-
-const submitForm = state => e => {
-  e.preventDefault();
-  const elements = Array.prototype.slice
-    .call(e.target.elements)
-    .reduce(
-      (element, next) =>
-        next.nodeName === "INPUT" &&
-        (next.checked || next.type === "text") &&
-        next.value
-          ? element.concat(next.value)
-          : element,
-      []
-    );
-
-  state.data = Object.assign({}, state.data, {
-    vote: elements.join(", ")
-  });
-
-  registerVote(state);
-  console.log("- ====== -");
-  if (window.dataLayer && typeof window.dataLayer !== "undefined") {
-    window.ga("send", "event", {
-      eventCategory: elements.join(", "),
-      eventAction: state.data.id,
-      eventLabel: state.data.doi + ":" + state.data.articleType,
-      hitCallback: () => {
-        console.log(
-          "%c user voted: " + elements.join(", "),
-          "color: blue; font-weight: bold;"
-        );
-      }
-    });
-  }
-  console.log("- ====== -");
-};
-
-const viewQuestion = function(state) {
-  return p({ class: "c-survey__question" })({
-    text: state.data.question
-  });
 };
 
 const viewMoreOption = function(state) {
@@ -133,25 +98,6 @@ const viewOptions = function(state) {
   return ul({ class: "c-survey__options-container u-clean-list" })(optionList);
 };
 
-const viewSubmitButton = function(state) {
-  return button({ class: "c-survey__submit", type: "submit" })({
-    text: "Confirm"
-  });
-};
-
-const viewSurvey = function(state) {
-  return div({
-    class: `c-survey ${state.data.shuffle ? "c-survey--shuffled" : ""}`
-  })([
-    form({ id: "survey-form", submit: submitForm(state) })([
-      viewTitle(state),
-      viewQuestion(state),
-      viewOptions(state),
-      viewSubmitButton(state)
-    ])
-  ]);
-};
-
 const viewFeedBack = function() {
   return div({ class: "c-survey" })([
     div({ class: "c-survey__feedback" })([
@@ -182,13 +128,20 @@ const renderSurvey = container => state => {
       container.removeChild(container.firstChild);
     }
     if (!state.data.vote) {
-      container.appendChild(viewSurvey(state));
-      state.data.height = container.offsetHeight + "px";
+      container.appendChild(
+        viewForm(
+          state,
+          [viewTitle, viewQuestion, viewOptions, viewSubmitButton],
+          [storeVote, sendEventToGa, closePoll]
+        )
+      );
     } else {
       container.appendChild(viewFeedBack());
     }
   }
 };
+
+const state = {};
 
 const Polls = options => {
   const defaultSettings = {
@@ -199,12 +152,7 @@ const Polls = options => {
     }
   };
   const settings = Object.assign({}, defaultSettings, options);
-  const container =
-    typeof settings.container === "string"
-      ? document.getElementById(settings.container)
-      : settings.container;
-
-  const state = onChange({}, renderSurvey(container));
+  const container = document.getElementById(settings.data.id);
   return {
     create() {
       if (settings.data.shuffle) {
@@ -215,7 +163,32 @@ const Polls = options => {
       } else {
         state.data = Object.assign({}, settings.data);
       }
+      renderSurvey(container)(state);
+    },
+    close() {
+      renderSurvey(container)(state);
     }
   };
 };
+
+Polls({
+  data: {
+    vote: isPollVoted("123456"),
+    doi: "123456",
+    articleType: "News",
+    id: "poll-123456",
+    shuffle: true,
+    title: "Thanks for your answer, we value your contribution.",
+    question: "How would you describe the article you just read?",
+    moreOption: true,
+    options: "News, Research Analysis, Book & Culture".split(", "),
+    thankYouMessageTitle: "Thanks for your answer, we value your contribution.",
+    thankYouMessageText:
+      "If you would like to help us continue to improve, we encourage you to:",
+    thankYouCtaText: "Sign up to our user panel.",
+    thankYouCtaLink:
+      "https://sndigital.springernature.com/usertesting/#how-to-participate"
+  }
+}).create();
+
 export { Polls };

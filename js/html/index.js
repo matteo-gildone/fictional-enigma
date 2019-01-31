@@ -1,5 +1,5 @@
-import tagsList from "./tags";
-import Element from "./element";
+import tagsList from "./tags.js";
+import Element from "./element.js";
 
 const tags = tagsList.reduce((acc, next) => {
   acc[next] = Element(next);

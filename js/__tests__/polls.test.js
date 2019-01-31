@@ -1,8 +1,8 @@
 import "jest-dom/extend-expect";
 import { tags } from "../html";
 import { Polls } from "../poll";
-import pollFixture from "./fixture/poll";
-import dataLayerFixture from "./fixture/dataLayer";
+import pollFixture from "./__fixtures__/poll";
+import dataLayerFixture from "./__fixtures__/dataLayer";
 const { div } = tags;
 
 function cleanUpBody() {
@@ -65,34 +65,22 @@ test("Should display 'Thank you message'", () => {
   );
 });
 
-test("Should not shuffle options", () => {
-  generatePoll(false, false, false);
-  const shuffled = [...document.querySelectorAll(".c-survey--shuffled")];
-  expect(shuffled.length).toEqual(0);
-});
-
-test("Should shuffle options", () => {
-  generatePoll(false, true, false);
-  const shuffled = [...document.querySelectorAll(".c-survey--shuffled")];
-  expect(shuffled.length).toEqual(1);
-});
-
-test("Should call ga", () => {
-  generatePoll();
-  document.querySelector(".c-survey__item label").click();
-  document.querySelector(".c-survey__submit").click();
-  expect(window.ga).toBeCalled();
-  // expect(window.ga).toBeCalledWith("send", "event", {
-  //   eventAction: "poll-123456",
-  //   eventCategory: "News",
-  //   eventLabel: "123456:News",
-  //   hitCallback: jest
-  //     .fn()
-  //     .mockImplementation(() =>
-  //       console.log(
-  //         "%c user voted: " + elements.join(", "),
-  //         "color: blue; font-weight: bold;"
-  //       )
-  //     )
-  // });
-});
+// test("Should call ga", () => {
+//   generatePoll();
+//   document.querySelector(".c-survey__item label").click();
+//   document.querySelector(".c-survey__submit").click();
+//   expect(window.ga).toBeCalled();
+//   // expect(window.ga).toBeCalledWith("send", "event", {
+//   //   eventAction: "poll-123456",
+//   //   eventCategory: "News",
+//   //   eventLabel: "123456:News",
+//   //   hitCallback: jest
+//   //     .fn()
+//   //     .mockImplementation(() =>
+//   //       console.log(
+//   //         "%c user voted: " + elements.join(", "),
+//   //         "color: blue; font-weight: bold;"
+//   //       )
+//   //     )
+//   // });
+// });
