@@ -1,12 +1,32 @@
 import { noop, shuffle, slugify } from "../utils.js";
 import { tags } from "../html/index.js";
 
+import createStore from "../store/index.js";
+import applyMiddleware from "../store/applyMiddleware.js";
 import { viewTitle } from "./views/viewTitle.js";
 import { viewQuestion } from "./views/viewQuestion.js";
 import { viewSubmitButton } from "./views/viewSubmitButton.js";
 import { viewForm } from "./views/viewForm.js";
 
-import { storeVote } from "./middlewares/storeVote.js";
+const logger = store => dispatch => action => {
+  console.group(action.type);
+  console.info("previous", store.getState());
+  let result = dispatch(action);
+  console.log("next state", store.getState());
+  console.groupEnd();
+  return result;
+};
+
+const reducer = (state = {}, action) => {
+  switch (action.type) {
+    case "INIT":
+      return Object.assign({}, state, action.payload);
+    case "VOTE":
+      return Object.assign({}, state, action.payload);
+    default:
+      return state;
+  }
+};
 
 const { div, label, input, a, span, p, li, ul } = tags;
 
@@ -26,9 +46,6 @@ const sendEventToGa = state => {
   console.log("- ====== -");
 };
 
-const closePoll = state => {
-  Polls.close();
-};
 const isPollVoted = function(doi) {
   const votes = JSON.parse(localStorage.getItem("mago-polls")) || [];
   return votes.indexOf(doi) > -1 ? true : false;
@@ -59,7 +76,7 @@ const viewMoreOption = function(state) {
   return li({ class: "c-survey__item c-survey__checkbox" })([
     input({
       id: `opt-more`,
-      type: state.data.multiple ? "checkbox" : "radio",
+      type: state.multiple ? "checkbox" : "radio",
       name: "option",
       value: "opt-more",
       change: focusClosestInputText
@@ -80,19 +97,19 @@ const viewMoreOption = function(state) {
 };
 
 const viewOptions = function(state) {
-  const optionList = state.data.options.map(function(option) {
+  const optionList = state.options.map(function(option) {
     return li({ class: "c-survey__item c-survey__checkbox" })([
       input({
         id: "opt-" + slugify(option),
-        type: state.data.multiple ? "checkbox" : "radio",
+        type: state.multiple ? "checkbox" : "radio",
         name: "option",
         value: option,
-        change: state.data.moreOption ? focusClosestInputText : noop
+        change: state.moreOption ? focusClosestInputText : noop
       })(),
       label({ for: "opt-" + slugify(option) })({ text: option })
     ]);
   });
-  if (state.data.moreOption) {
+  if (state.moreOption) {
     optionList.push(viewMoreOption(state));
   }
   return ul({ class: "c-survey__options-container u-clean-list" })(optionList);
@@ -122,17 +139,18 @@ const viewFeedBack = function() {
   ]);
 };
 
-const renderSurvey = container => state => {
+const render = container => store => {
   if (container) {
+    const { getState, dispatch } = store;
     while (container.firstChild) {
       container.removeChild(container.firstChild);
     }
-    if (!state.data.vote) {
+    if (!getState().vote) {
       container.appendChild(
         viewForm(
-          state,
+          getState(),
           [viewTitle, viewQuestion, viewOptions, viewSubmitButton],
-          [storeVote, sendEventToGa, closePoll]
+          dispatch
         )
       );
     } else {
@@ -140,9 +158,6 @@ const renderSurvey = container => state => {
     }
   }
 };
-
-const state = {};
-
 const Polls = options => {
   const defaultSettings = {
     data: {
@@ -155,18 +170,16 @@ const Polls = options => {
   const container = document.getElementById(settings.data.id);
   return {
     create() {
+      const store = applyMiddleware(logger)(createStore)(reducer);
+
+      store.subscribe(render(container));
       if (settings.data.shuffle) {
-        const shuffled = shuffle(settings.data.options);
-        state.data = Object.assign({}, settings.data, {
-          options: shuffled
-        });
-      } else {
-        state.data = Object.assign({}, settings.data);
+        settings.data.options = shuffle(settings.data.options);
       }
-      renderSurvey(container)(state);
-    },
-    close() {
-      renderSurvey(container)(state);
+      store.dispatch({
+        type: "INIT",
+        payload: settings.data
+      });
     }
   };
 };

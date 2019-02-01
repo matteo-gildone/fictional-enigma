@@ -2,8 +2,7 @@ import { tags } from "../../html/index.js";
 
 const { div, form } = tags;
 
-const submitForm = (state, onSubmitMiddleware = []) => e => {
-  console.log(onSubmitMiddleware);
+const submitForm = (state, dispatch) => e => {
   e.preventDefault();
   const elements = Array.prototype.slice
     .call(e.target.elements)
@@ -17,19 +16,18 @@ const submitForm = (state, onSubmitMiddleware = []) => e => {
       []
     );
 
-  state.data = Object.assign({}, state.data, {
-    vote: elements.join(", ")
+  dispatch({
+    type: "VOTE",
+    payload: { vote: elements.join(", ") }
   });
-
-  onSubmitMiddleware.forEach(middleware => middleware(state));
 };
 
-const viewForm = (state, children = [], onSubmitMiddleware = []) => {
+const viewForm = (state, dispatch, children = []) => {
   return div({
-    class: `c-survey ${state.data.shuffle ? "c-survey--shuffled" : ""}`
+    class: `c-survey ${state.shuffle ? "c-survey--shuffled" : ""}`
   })([
-    form({ id: "survey-form", submit: submitForm(state, onSubmitMiddleware) })(
-      children.map(child => child(state))
+    form({ id: "survey-form", submit: submitForm(state, dispatch) })(
+      children.map(child => child(state, dispatch))
     )
   ]);
 };
