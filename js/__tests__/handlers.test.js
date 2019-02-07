@@ -3,9 +3,17 @@ import { submitForm } from "../poll/handlers";
 
 const dispatch = jest.fn();
 
-test("should render the title markup", () => {
+test("should call prevent default", () => {
   const event = { preventDefault: jest.fn() };
   submitForm(dispatch)(event);
-  expect(dispatch).toBeCalled();
   expect(event.preventDefault).toBeCalled();
+});
+
+test("should call dispatch ", () => {
+  const event = {
+    preventDefault: jest.fn(),
+    target: { elements: ["aaaa", "bbbb"] }
+  };
+  submitForm(dispatch)(event);
+  expect(dispatch).toBeCalled();
 });
