@@ -147,11 +147,12 @@ const render = container => store => {
     }
     if (!getState().vote) {
       container.appendChild(
-        viewForm(
-          getState(),
-          [viewTitle, viewQuestion, viewOptions, viewSubmitButton],
-          dispatch
-        )
+        viewForm(getState(), dispatch, [
+          viewTitle,
+          viewQuestion,
+          viewOptions,
+          viewSubmitButton
+        ])
       );
     } else {
       container.appendChild(viewFeedBack());

@@ -1,6 +1,10 @@
 import "jest-dom/extend-expect";
 import dataLayerFixture from "./__fixtures__/dataLayer";
+import poll from "./__fixtures__/poll";
+import { tags } from "../html";
 import { viewForm } from "../poll/views/viewForm";
+
+const { div } = tags;
 const mockDispatch = jest.fn();
 beforeEach(() => {
   window.ga = jest.fn().mockImplementation(() => jest.fn());
@@ -9,24 +13,7 @@ beforeEach(() => {
 
 test("should render the form markup", () => {
   const actual = viewForm(
-    {
-      vote: false,
-      doi: "123456",
-      articleType: "News",
-      id: "poll-123456",
-      shuffle: true,
-      title: "Thanks for your answer, we value your contribution.",
-      question: "How would you describe the article you just read?",
-      moreOption: false,
-      options: "News, Research Analysis, Book & Culture".split(", "),
-      thankYouMessageTitle:
-        "Thanks for your answer, we value your contribution.",
-      thankYouMessageText:
-        "If you would like to help us continue to improve, we encourage you to:",
-      thankYouCtaText: "Sign up to our user panel.",
-      thankYouCtaLink:
-        "https://sndigital.springernature.com/usertesting/#how-to-participate"
-    },
+    poll("poll-12345", false, false, false).data,
     mockDispatch,
     []
   );
@@ -36,24 +23,7 @@ test("should render the form markup", () => {
 
 test("Should render a regular poll", () => {
   const actual = viewForm(
-    {
-      vote: false,
-      doi: "123456",
-      articleType: "News",
-      id: "poll-123456",
-      shuffle: false,
-      title: "Thanks for your answer, we value your contribution.",
-      question: "How would you describe the article you just read?",
-      moreOption: false,
-      options: "News, Research Analysis, Book & Culture".split(", "),
-      thankYouMessageTitle:
-        "Thanks for your answer, we value your contribution.",
-      thankYouMessageText:
-        "If you would like to help us continue to improve, we encourage you to:",
-      thankYouCtaText: "Sign up to our user panel.",
-      thankYouCtaLink:
-        "https://sndigital.springernature.com/usertesting/#how-to-participate"
-    },
+    poll("poll-12345", false, false, false).data,
     mockDispatch,
     []
   );
@@ -63,24 +33,7 @@ test("Should render a regular poll", () => {
 
 test("Should render a shuffled poll", () => {
   const actual = viewForm(
-    {
-      vote: false,
-      doi: "123456",
-      articleType: "News",
-      id: "poll-123456",
-      shuffle: true,
-      title: "Thanks for your answer, we value your contribution.",
-      question: "How would you describe the article you just read?",
-      moreOption: false,
-      options: "News, Research Analysis, Book & Culture".split(", "),
-      thankYouMessageTitle:
-        "Thanks for your answer, we value your contribution.",
-      thankYouMessageText:
-        "If you would like to help us continue to improve, we encourage you to:",
-      thankYouCtaText: "Sign up to our user panel.",
-      thankYouCtaLink:
-        "https://sndigital.springernature.com/usertesting/#how-to-participate"
-    },
+    poll("poll-12345", false, true, false).data,
     mockDispatch,
     []
   );
@@ -88,18 +41,24 @@ test("Should render a shuffled poll", () => {
   expect(actual).toHaveClass("c-survey--shuffled");
 });
 
-// test("Should call middlewares on submit", () => {
-//   const fn1Mock = jest.fn();
-//   const fn2Mock = jest.fn();
-//   const btn = () =>
-//     button({ class: "c-survey__submit", type: "submit" })({
-//       text: "Confirm"
-//     });
-//   const actual = viewForm(
-//     { data: { shuffle: true } },
-//     [btn],
-//     [fn1Mock, fn2Mock]
-//   );
-//   actual.querySelector(".c-survey__submit").click();
-//   expect(fn1Mock).toBeCalled();
-// });
+test("Should be empty", () => {
+  const actual = viewForm(
+    poll("poll-12345", false, true, false).data,
+    mockDispatch,
+    []
+  );
+  expect(actual.querySelector("form")).toBeEmpty();
+});
+
+test("Should add children", () => {
+  const actual = viewForm(
+    poll("poll-12345", false, true, false).data,
+    mockDispatch,
+    [
+      (state, dispatch) =>
+        div({ class: "child-element" })({ text: "I'm your child" })
+    ]
+  );
+  expect(actual.querySelector("div")).toHaveClass("child-element");
+  expect(actual).toHaveTextContent("I'm your child");
+});
