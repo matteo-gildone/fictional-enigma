@@ -1,5 +1,5 @@
 import "jest-dom/extend-expect";
-import { submitForm, registerVote } from "../poll/handlers";
+import { submitForm, registerVote } from "../handlers";
 
 const dispatch = jest.fn();
 

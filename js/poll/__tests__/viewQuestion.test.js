@@ -1,5 +1,5 @@
 import "jest-dom/extend-expect";
-import { viewQuestion } from "../poll/views/viewQuestion";
+import { viewQuestion } from "../views/viewQuestion";
 
 test("should render the question markup", () => {
   const actual = viewQuestion({ question: "Poll question" });

@@ -1,5 +1,5 @@
 import "jest-dom/extend-expect";
-import { viewFeedback } from "../poll/views/viewFeedback";
+import { viewFeedback } from "../views/viewFeedback";
 
 test("should render the Feedback page", () => {
   const feedback = viewFeedback({

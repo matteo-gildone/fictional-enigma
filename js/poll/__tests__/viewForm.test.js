@@ -1,8 +1,8 @@
 import "jest-dom/extend-expect";
 import dataLayerFixture from "./__fixtures__/dataLayer";
 import poll from "./__fixtures__/poll";
-import { tags } from "../html";
-import { viewForm } from "../poll/views/viewForm";
+import { tags } from "../../html";
+import { viewForm } from "../views/viewForm";
 
 const { div } = tags;
 const mockDispatch = jest.fn();

@@ -1,5 +1,5 @@
 import "jest-dom/extend-expect";
-import { viewTitle } from "../poll/views/viewTitle";
+import { viewTitle } from "../views/viewTitle";
 
 test("should render the title markup", () => {
   const actual = viewTitle({ title: "Test title!" });

@@ -1,5 +1,5 @@
 import "jest-dom/extend-expect";
-import { viewSubmitButton } from "../poll/views/viewSubmitButton";
+import { viewSubmitButton } from "../views/viewSubmitButton";
 
 test("should render the question markup", () => {
   const actual = viewSubmitButton();
