@@ -7,6 +7,7 @@ import { viewTitle } from "./views/viewTitle.js";
 import { viewQuestion } from "./views/viewQuestion.js";
 import { viewSubmitButton } from "./views/viewSubmitButton.js";
 import { viewForm } from "./views/viewForm.js";
+import { registerVote } from "./handlers.js";
 
 const logger = store => dispatch => action => {
   console.group(action.type);
@@ -18,11 +19,15 @@ const logger = store => dispatch => action => {
 };
 
 const reducer = (state = {}, action) => {
+  let newState;
   switch (action.type) {
     case "INIT":
-      return Object.assign({}, state, action.payload);
+      newState = Object.assign({}, state, action.payload);
+      return newState;
     case "VOTE":
-      return Object.assign({}, state, action.payload);
+      newState = Object.assign({}, state, action.payload);
+      registerVote(newState);
+      return newState;
     default:
       return state;
   }

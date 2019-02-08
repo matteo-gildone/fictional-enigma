@@ -22,3 +22,9 @@ export const submitForm = dispatch => e => {
     });
   }
 };
+
+export const registerVote = state => {
+  const votes = JSON.parse(localStorage.getItem("mago-polls")) || [];
+  votes.push(state.doi);
+  localStorage.setItem("mago-polls", JSON.stringify(votes));
+};
