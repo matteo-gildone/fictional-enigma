@@ -1,4 +1,10 @@
-export default (container, moreOption, shuffle, voted) => ({
+export default (
+  container,
+  moreOption = false,
+  shuffle = false,
+  voted = false,
+  multiple = false
+) => ({
   container: container,
   data: {
     vote: voted,
@@ -6,6 +12,7 @@ export default (container, moreOption, shuffle, voted) => ({
     articleType: "News",
     id: "poll-123456",
     shuffle: shuffle,
+    multiple: multiple,
     title: "Thanks for your answer, we value your contribution.",
     question: "How would you describe the article you just read?",
     moreOption: moreOption,
