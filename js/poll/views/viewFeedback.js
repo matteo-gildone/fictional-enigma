@@ -10,7 +10,7 @@ const viewFeedback = state => {
       }),
       p()([
         span()({
-          text: state.thankYouMessageText
+          text: `${state.thankYouMessageText} `
         }),
         a({
           href: state.thankYouCtaLink,
