@@ -8,6 +8,7 @@ import { viewSubmitButton } from "./views/viewSubmitButton.js";
 import { viewForm } from "./views/viewForm.js";
 import { viewFeedback } from "./views/viewFeedback.js";
 import { viewOptions } from "./views/viewOptions.js";
+import reducer from "./reducer.js";
 import { registerVote, sendEventToGa, isPollVoted } from "./handlers.js";
 
 const logger = store => dispatch => action => {
@@ -17,22 +18,6 @@ const logger = store => dispatch => action => {
   console.log("next state", store.getState());
   console.groupEnd();
   return result;
-};
-
-const reducer = (state = {}, action) => {
-  let newState;
-  switch (action.type) {
-    case "INIT":
-      newState = Object.assign({}, state, action.payload);
-      return newState;
-    case "VOTE":
-      newState = Object.assign({}, state, action.payload);
-      sendEventToGa(newState);
-      registerVote(newState);
-      return newState;
-    default:
-      return state;
-  }
 };
 
 const render = container => store => {
@@ -67,7 +52,9 @@ const Polls = options => {
   const container = document.getElementById(settings.data.id);
   return {
     create() {
-      const store = applyMiddleware(logger)(createStore)(reducer);
+      const store = applyMiddleware(logger)(createStore)(
+        reducer(registerVote, sendEventToGa)
+      );
 
       store.subscribe(render(container));
       if (settings.data.shuffle) {
