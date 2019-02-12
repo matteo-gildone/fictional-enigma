@@ -4,7 +4,7 @@ import { submitForm } from "../handlers.js";
 const { div, form } = tags;
 
 const viewForm = (state, dispatch, children = []) => {
-  if (state.questions && typeof dispatch === "function") {
+  if (state.questions.length > 0 && typeof dispatch === "function") {
     return div({
       class: `c-survey`
     })([
