@@ -31,7 +31,6 @@ const render = container => store => {
         viewForm(getState(), dispatch, [
           viewTitle,
           viewQuestion,
-          viewOptions,
           viewSubmitButton
         ])
       );
@@ -42,11 +41,7 @@ const render = container => store => {
 };
 const Polls = options => {
   const defaultSettings = {
-    data: {
-      shuffle: false,
-      multiple: false,
-      moreOption: false
-    }
+    data: {}
   };
   const settings = Object.assign({}, defaultSettings, options);
   const container = document.getElementById(settings.data.id);
@@ -74,11 +69,16 @@ Polls({
     doi: "123456",
     articleType: "News",
     id: "poll-123456",
-    shuffle: true,
-    title: "Thanks for your answer, we value your contribution.",
-    question: "How would you describe the article you just read?",
-    moreOption: true,
-    options: "News, Research Analysis, Book & Culture".split(", "),
+    title: "Help us to improve our browsing experience.",
+    questions: [
+      {
+        text: "How would you describe the article you just read?",
+        options: "News, Research Analysis, Book & Culture".split(", "),
+        type: "single",
+        shuffle: true,
+        moreOption: true
+      }
+    ],
     thankYouMessageTitle: "Thanks for your answer, we value your contribution.",
     thankYouMessageText:
       "If you would like to help us continue to improve, we encourage you to:",

@@ -11,12 +11,17 @@ export default (
     doi: "123456",
     articleType: "News",
     id: "poll-123456",
-    shuffle: shuffle,
-    multiple: multiple,
+    questions: [
+      {
+        text: "How would you describe the article you just read?",
+        options: "News, Research Analysis, Book & Culture".split(", "),
+        type: "single",
+        shuffle: shuffle,
+        moreOption: moreOption,
+        multiple: multiple
+      }
+    ],
     title: "Thanks for your answer, we value your contribution.",
-    question: "How would you describe the article you just read?",
-    moreOption: moreOption,
-    options: "News, Research Analysis, Book & Culture".split(", "),
     thankYouMessageTitle: "Thanks for your answer, we value your contribution.",
     thankYouMessageText:
       "If you would like to help us continue to improve, we encourage you to:",

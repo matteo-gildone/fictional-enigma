@@ -21,26 +21,6 @@ test("should render the form markup", () => {
   expect(actual.querySelector("form").tagName).toEqual("FORM");
 });
 
-test("Should render a regular poll", () => {
-  const actual = viewForm(
-    poll("poll-12345", false, false, false).data,
-    mockDispatch,
-    []
-  );
-  expect(actual).toHaveClass("c-survey");
-  expect(actual).not.toHaveClass("c-survey--shuffled");
-});
-
-test("Should render a shuffled poll", () => {
-  const actual = viewForm(
-    poll("poll-12345", false, true, false).data,
-    mockDispatch,
-    []
-  );
-  expect(actual).toHaveClass("c-survey");
-  expect(actual).toHaveClass("c-survey--shuffled");
-});
-
 test("Should be empty", () => {
   const actual = viewForm(
     poll("poll-12345", false, true, false).data,
@@ -48,6 +28,11 @@ test("Should be empty", () => {
     []
   );
   expect(actual.querySelector("form")).toBeEmpty();
+});
+
+test("Should handle the lack of questions.", () => {
+  const actual = viewForm({}, mockDispatch, []);
+  expect(actual).toHaveTextContent("No questions added.");
 });
 
 test("Should add children", () => {

@@ -1,10 +1,18 @@
 import { tags } from "../../html/index.js";
+import { viewOptions } from "./viewOptions.js";
 
-const { p } = tags;
+const { div, p } = tags;
 const viewQuestion = state => {
-  return p({ class: "c-survey__question" })({
-    text: state.question
+  const { questions } = state;
+  const result = questions.map(question => {
+    return div({ class: `${question.shuffle ? "c-survey--shuffled" : ""}` })([
+      p({ class: "c-survey__question" })({
+        text: question.text
+      }),
+      viewOptions(question)
+    ]);
   });
+  return div()(result);
 };
 
 export { viewQuestion };
