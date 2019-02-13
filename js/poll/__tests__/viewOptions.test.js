@@ -34,8 +34,8 @@ test("should check when focus on input text more option fields", () => {
   const options = viewOptions(
     poll("poll-12345", true, false, false).data.questions[0]
   );
-  const moreOption = options.querySelector("#opt-more");
-  const moreText = options.querySelector("#opt-more-text");
+  const moreOption = options.querySelector(".opt-more");
+  const moreText = options.querySelector(".opt-more-text");
   moreText.focus();
   expect(moreOption.checked).toBeTruthy();
 });
@@ -44,8 +44,8 @@ test("should focus input text when radio is checked", () => {
   const options = viewOptions(
     poll("poll-12345", true, false, false).data.questions[0]
   );
-  const moreOption = options.querySelector("#opt-more");
-  const moreText = options.querySelector("#opt-more-text");
+  const moreOption = options.querySelector(".opt-more");
+  const moreText = options.querySelector(".opt-more-text");
   moreOption.click();
   moreText.value = "some value";
   expect(moreText === document.activeElement).toBeTruthy();
@@ -57,8 +57,8 @@ test("should clean the input text when changed option", () => {
     poll("poll-12345", true, false, false).data.questions[0]
   );
   const firstOption = options.querySelector("input");
-  const moreOption = options.querySelector("#opt-more");
-  const moreText = options.querySelector("#opt-more-text");
+  const moreOption = options.querySelector(".opt-more");
+  const moreText = options.querySelector(".opt-more-text");
   moreOption.click();
   moreText.value = "some value";
   firstOption.click();

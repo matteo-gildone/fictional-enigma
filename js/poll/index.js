@@ -7,7 +7,6 @@ import { viewQuestion } from "./views/viewQuestion.js";
 import { viewSubmitButton } from "./views/viewSubmitButton.js";
 import { viewForm } from "./views/viewForm.js";
 import { viewFeedback } from "./views/viewFeedback.js";
-import { viewOptions } from "./views/viewOptions.js";
 import reducer from "./reducer.js";
 import { registerVote, sendEventToGa, isPollVoted } from "./handlers.js";
 
@@ -72,8 +71,17 @@ Polls({
     title: "Help us to improve our browsing experience.",
     questions: [
       {
+        id: 1,
         text: "How would you describe the article you just read?",
         options: "News, Research Analysis, Book & Culture".split(", "),
+        type: "single",
+        shuffle: true,
+        moreOption: true
+      },
+      {
+        id: 2,
+        text: "How would you describe the article you just read?",
+        options: "News2, Research Analysis2, Book & Culture2".split(", "),
         type: "single",
         shuffle: true,
         moreOption: true
