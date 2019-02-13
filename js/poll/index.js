@@ -62,38 +62,9 @@ const Polls = options => {
   };
 };
 
-Polls({
-  data: {
-    vote: isPollVoted("123456"),
-    doi: "123456",
-    articleType: "News",
-    id: "poll-123456",
-    title: "Help us to improve our browsing experience.",
-    questions: [
-      {
-        id: 1,
-        text: "How would you describe the article you just read?",
-        options: "News, Research Analysis, Book & Culture".split(", "),
-        type: "single",
-        shuffle: true,
-        moreOption: true
-      },
-      {
-        id: 2,
-        text: "How would you describe the article you just read?",
-        options: "News2, Research Analysis2, Book & Culture2".split(", "),
-        type: "single",
-        shuffle: true,
-        moreOption: true
-      }
-    ],
-    thankYouMessageTitle: "Thanks for your answer, we value your contribution.",
-    thankYouMessageText:
-      "If you would like to help us continue to improve, we encourage you to:",
-    thankYouCtaText: "Sign up to our user panel.",
-    thankYouCtaLink:
-      "https://sndigital.springernature.com/usertesting/#how-to-participate"
-  }
-}).create();
+window.pollsList.polls.forEach(poll => {
+  console.log(poll);
+  Polls(poll).create();
+});
 
 export { Polls };
