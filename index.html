@@ -53,17 +53,54 @@
             actually. Letterpress distillery 3 wolf moon woke church-key quinoa
             freegan humblebrag small batch raw denim ramps tousled fam.
           </p>
-          <div
-            id="survey-container"
-            data-survey
-            data-doi="d41586-018-07659-5"
-            data-article-type="News"
-            data-shuffle="true"
-            data-title="Help us to improve our browsing experience"
-            data-question="How would you categorize the content you just read?"
-            data-more-option="true"
-            data-options="News, Opinion, Research analysis, Careers, Books & culture, Research"
-          ></div>
+          <div id="poll-123456"></div>
+          <script>
+            if (typeof window.pollsList !== "function") {
+              window.pollsList = function(poll) {
+                pollsList.polls.push(poll);
+              };
+              pollsList.polls = [];
+              pollsList.l = +new Date();
+            }
+            pollsList({
+              data: {
+                doi: "123456",
+                articleType: "News",
+                id: "poll-123456",
+                title: "Help us to improve our browsing experience.",
+                questions: [
+                  {
+                    id: "123456-1",
+                    text: "How would you describe the article you just read?",
+                    options: "News, Research Analysis, Book & Culture".split(
+                      ", "
+                    ),
+                    type: "single",
+                    shuffle: true,
+                    moreOption: true
+                  },
+                  {
+                    id: "123456-2",
+                    text: "How would you describe the article you just read?",
+                    options: "News2, Research Analysis2, Book & Culture2".split(
+                      ", "
+                    ),
+                    type: "single",
+                    shuffle: true,
+                    moreOption: true
+                  }
+                ],
+                thankYouMessageTitle:
+                  "Thanks for your answer, we value your contribution.",
+                thankYouMessageText:
+                  "If you would like to help us continue to improve, we encourage you to:",
+                thankYouCtaText: "Sign up to our user panel.",
+                thankYouCtaLink:
+                  "https://sndigital.springernature.com/usertesting/#how-to-participate"
+              }
+            });
+          </script>
+          <script type="module" src="./js/poll/index.js" async defer></script>
           <p>
             Lorem ipsum dolor amet pop-up keffiyeh +1 ramps tote bag master
             cleanse health goth DIY subway tile cardigan blue bottle pork belly
@@ -78,17 +115,45 @@
             you probably haven't heard of them portland direct trade. Gentrify
             banh mi organic yr truffaut tbh butcher drinking vinegar vice.
           </p>
-          <div
-            id="poll-123456"
-            data-survey
-            data-doi="d41586-018-07659-52"
-            data-article-type="News"
-            data-shuffle="true"
-            data-title="Help us to improve our browsing experience"
-            data-question="How would you categorize the content you just read?"
-            data-more-option="true"
-            data-options="News 2, Opinion 2, Research analysis 2, Careers 2, Books & culture 2, Research 2"
-          ></div>
+
+          <div id="poll-123457"></div>
+          <script>
+            if (typeof window.pollsList !== "function") {
+              window.pollsList = function(poll) {
+                pollsList.polls.push(poll);
+              };
+              pollsList.polls = [];
+              pollsList.l = +new Date();
+            }
+            pollsList({
+              data: {
+                doi: "123457",
+                articleType: "News",
+                id: "poll-123457",
+                title: "Help us to improve our browsing experience.",
+                questions: [
+                  {
+                    id: "123457-1",
+                    text: "How would you describe the article you just read?",
+                    options: "News3, Research Analysis3, Book & Culture3".split(
+                      ", "
+                    ),
+                    type: "single",
+                    shuffle: true,
+                    moreOption: true
+                  }
+                ],
+                thankYouMessageTitle:
+                  "Thanks for your answer, we value your contribution.",
+                thankYouMessageText:
+                  "If you would like to help us continue to improve, we encourage you to:",
+                thankYouCtaText: "Sign up to our user panel.",
+                thankYouCtaLink:
+                  "https://sndigital.springernature.com/usertesting/#how-to-participate"
+              }
+            });
+          </script>
+          <script type="module" src="./js/poll/index.js" async defer></script>
         </div>
         <div class="col-md-4">
           <div class="list-group">
@@ -144,7 +209,7 @@
     ga('create', 'UA-XXXXX-Y', 'auto'); ga('send', 'pageview')
   </script>
   <script src="https://www.google-analytics.com/analytics.js" async defer></script> -->
-    <script>
+    <!-- <script>
       window.surveyList = window.surveyList || [];
       function polluting(data) {
         surveyList.push(data);
@@ -174,6 +239,6 @@
       js.src = "./js/poll/index.js";
       js.async = true;
       document.body.appendChild(js);
-    </script>
+    </script> -->
   </body>
 </html>

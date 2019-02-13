@@ -1,6 +1,6 @@
 import "jest-dom/extend-expect";
 
-import { tags } from "../html";
+import { tags } from "../index";
 
 const { h1, div } = tags;
 

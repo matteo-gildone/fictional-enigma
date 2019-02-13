@@ -1,4 +1,4 @@
-import { noop, shuffle, slugify } from "../utils.js";
+import { noop, shuffle, slugify } from "../../utils.js";
 
 test("Should return undefined", () => {
   expect(noop()).toEqual(undefined);

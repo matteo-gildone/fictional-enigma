@@ -20,5 +20,8 @@
     "babel-preset-env": "^1.7.0",
     "jest": "^23.6.0",
     "jest-dom": "^3.0.0"
+  },
+  "dependencies": {
+    "jest-localstorage-mock": "^2.4.0"
   }
 }
