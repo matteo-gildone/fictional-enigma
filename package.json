@@ -33,7 +33,6 @@
     "babel-preset-flow": "^6.23.0",
     "eslint": "^5.9.0",
     "eslint-config-prettier": "^3.6.0",
-    "gulp": "^4.0.0",
     "http-server": "^0.11.1",
     "husky": "^1.1.2",
     "jest": "^23.6.0",
