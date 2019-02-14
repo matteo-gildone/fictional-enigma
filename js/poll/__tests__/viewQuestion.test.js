@@ -6,7 +6,7 @@ test("should render the question markup", () => {
     questions: [
       {
         text: "How would you describe the article you just read?",
-        options: "News, Research Analysis, Book & Culture".split(", "),
+        options: "News, Research Analysis, Book & Culture",
         type: "single",
         shuffle: true,
         moreOption: true
@@ -24,7 +24,7 @@ test("Should render a regular poll", () => {
     questions: [
       {
         text: "How would you describe the article you just read?",
-        options: "News, Research Analysis, Book & Culture".split(", "),
+        options: "News, Research Analysis, Book & Culture",
         type: "single",
         shuffle: false,
         moreOption: true
@@ -39,7 +39,7 @@ test("Should render a shuffled poll", () => {
     questions: [
       {
         text: "How would you describe the article you just read?",
-        options: "News, Research Analysis, Book & Culture".split(", "),
+        options: "News, Research Analysis, Book & Culture",
         type: "single",
         shuffle: true,
         moreOption: true

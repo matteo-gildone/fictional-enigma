@@ -40,12 +40,12 @@ export const sendEventToGa = (state, cb) => {
   }
 };
 
-export const isPollVoted = function(doi) {
+export const isPollVoted = doi => {
   const votes = JSON.parse(localStorage.getItem("mago-polls")) || [];
   return votes.indexOf(doi) > -1 ? true : false;
 };
 
-export const limitCharacters = function(e) {
+export const limitCharacters = e => {
   var max_chars = 60;
   if (e.target.value.length > max_chars) {
     e.target.value = e.target.value.substr(0, max_chars);
