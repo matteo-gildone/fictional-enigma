@@ -8,7 +8,7 @@
     "build": "rollup -c",
     "watch": "rollup -c -w",
     "test": "jest --colors --verbose --expand --coverage",
-    "precommit": "npm run build && lint-staged && npm test"
+    "precommit": "lint-staged && npm test"
   },
   "repository": {
     "type": "git",
