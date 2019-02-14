@@ -63,7 +63,7 @@ const Polls = options => {
 };
 
 window.pollsList.polls.forEach(poll => {
-  console.log(poll);
+  poll.data.vote = isPollVoted(poll.data.doi);
   Polls(poll).create();
 });
 

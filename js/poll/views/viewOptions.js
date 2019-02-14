@@ -20,7 +20,7 @@ const focusClosestInputText = e => {
 const viewMoreOption = state => {
   return li({ class: "c-survey__item c-survey__checkbox" })([
     input({
-      class: `opt-more`,
+      class: "opt-more",
       type: state.multiple ? "checkbox" : "radio",
       name: `option-${state.id}`,
       value: "opt-more",
@@ -28,7 +28,7 @@ const viewMoreOption = state => {
     })(),
     label()([
       input({
-        class: `opt-more-text`,
+        class: "opt-more-text",
         type: "text",
         name: `opt-more-text-${state.id}`,
         keypress: limitCharacters,
@@ -39,7 +39,7 @@ const viewMoreOption = state => {
 };
 
 const viewOptions = state => {
-  const optionList = state.options.map(option => {
+  const optionList = state.options.split(", ").map(option => {
     return li({ class: "c-survey__item c-survey__checkbox" })([
       input({
         id: "opt-" + slugify(option),

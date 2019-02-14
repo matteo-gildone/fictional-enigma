@@ -14,7 +14,7 @@ export default (
     questions: [
       {
         text: "How would you describe the article you just read?",
-        options: "News, Research Analysis, Book & Culture".split(", "),
+        options: "News, Research Analysis, Book & Culture",
         type: "single",
         shuffle: shuffle,
         moreOption: moreOption,

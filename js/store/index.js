@@ -1,7 +1,7 @@
 export default function createStore(reducer, initialState = {}, enhancer) {
-  if (typeof preloadedState === "function" && typeof enhancer === "undefined") {
-    enhancer = preloadedState;
-    preloadedState = undefined;
+  if (typeof initialState === "function" && typeof enhancer === "undefined") {
+    enhancer = initialState;
+    initialState = undefined;
   }
   const store = {};
   let state = initialState;
