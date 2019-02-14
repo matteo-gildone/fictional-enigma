@@ -6,26 +6,40 @@ import pkg from "./package.json";
 
 const production = !process.env.ROLLUP_WATCH;
 
-export default {
-  input: "js/poll/index.js",
-  output: {
-    file: pkg.module,
-    format: "iife",
-    name: "Poll",
-    sourcemap: true
+const defaultPlugins = [
+  resolve({
+    jsnext: true,
+    main: true
+  }),
+  babel({
+    runtimeHelpers: true,
+    exclude: "node_modules/**", // only transpile our source code
+    plugins: ["@babel/plugin-transform-runtime"],
+    externalHelpers: true
+  }),
+  commonjs(), // converts date-fns to ES modules
+  production && uglify() // minify, but only in production
+];
+
+export default [
+  {
+    input: "js/poll/index.js",
+    output: {
+      file: pkg.module,
+      format: "iife",
+      name: "Poll",
+      sourcemap: true
+    },
+    plugins: defaultPlugins
   },
-  plugins: [
-    resolve({
-      jsnext: true,
-      main: true
-    }),
-    babel({
-      runtimeHelpers: true,
-      exclude: "node_modules/**", // only transpile our source code
-      plugins: ["@babel/plugin-transform-runtime"],
-      externalHelpers: true
-    }),
-    commonjs(), // converts date-fns to ES modules
-    production && uglify() // minify, but only in production
-  ]
-};
+  {
+    input: "js/admin/index.js",
+    output: {
+      file: "dist/admin.iief.js",
+      format: "iife",
+      name: "Admin",
+      sourcemap: true
+    },
+    plugins: defaultPlugins
+  }
+];
