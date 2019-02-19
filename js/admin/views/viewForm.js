@@ -1,5 +1,6 @@
 import { tags } from "../../html/index.js";
 import { viewHelperInput } from "./viewHelperInput";
+import { viewQuestion } from "./viewQuestion";
 const { div, h4, form, fieldset, hr } = tags;
 
 const viewForm = () => {
@@ -9,6 +10,8 @@ const viewForm = () => {
       fieldset({ class: "form-group" })([
         div({ class: "row" })([viewHelperInput("title", "text", "Title")])
       ]),
+      hr()(),
+      viewQuestion(),
       hr()(),
       fieldset({ class: "form-group" })([
         div({ class: "row" })([

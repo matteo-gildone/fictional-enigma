@@ -1,5 +1,5 @@
 import { tags } from "../../html/index.js";
-const { div, label, input } = tags;
+const { div, label, input, small } = tags;
 
 //type_ t, placeholder p, value v, onInput toMsg
 const viewHelperInput = (
@@ -7,6 +7,7 @@ const viewHelperInput = (
   type = "text",
   labelText = "",
   value = "",
+  mutedText = "",
   onChange = () => {}
 ) => {
   return div({ class: "col-md-12 mb-3" })([
@@ -17,7 +18,10 @@ const viewHelperInput = (
       id: id,
       value: value,
       change: onChange
-    })()
+    })(),
+    small({ class: "form-text text-muted" })({
+      text: mutedText
+    })
   ]);
 };
 
