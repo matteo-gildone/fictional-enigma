@@ -1,5 +1,3 @@
-import { shuffle } from "../utils.js";
-
 import createStore from "../store/index.js";
 import applyMiddleware from "../store/applyMiddleware.js";
 import { viewTitle } from "./views/viewTitle.js";
@@ -51,9 +49,6 @@ const Polls = options => {
       );
 
       store.subscribe(render(container));
-      if (settings.data.shuffle) {
-        settings.data.options = shuffle(settings.data.options);
-      }
       store.dispatch({
         type: "INIT",
         payload: settings.data

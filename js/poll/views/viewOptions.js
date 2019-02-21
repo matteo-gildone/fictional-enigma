@@ -1,6 +1,6 @@
 import { tags } from "../../html/index.js";
 import { limitCharacters } from "../handlers.js";
-import { slugify, noop } from "../../utils.js";
+import { slugify, noop, shuffle } from "../../utils.js";
 const { label, input, li, ul } = tags;
 
 const checkClosestRadio = e => {
@@ -39,7 +39,10 @@ const viewMoreOption = state => {
 };
 
 const viewOptions = state => {
-  const optionList = state.options.split(", ").map(option => {
+  const options = state.shuffle
+    ? shuffle(state.options.split(", "))
+    : state.options.split(", ");
+  const optionList = options.map(option => {
     return li({ class: "c-survey__item c-survey__checkbox" })([
       input({
         id: "opt-" + slugify(option),

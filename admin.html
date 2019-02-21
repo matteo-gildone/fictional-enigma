@@ -15,8 +15,8 @@
     <!-- Place favicon.ico in the root directory -->
     <link
       rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="css/normalize.css" />
@@ -41,13 +41,26 @@
         <li class="breadcrumb-item active" aria-current="page">Data</li>
       </ol>
     </nav>
-    <div id="admin"></div>
+    <div id="root"></div>
     <script>
+      if (typeof window.pollsList !== "function") {
+        window.pollsList = function(poll) {
+          pollsList.polls.push(poll);
+        };
+        pollsList.polls = [];
+        pollsList.l = +new Date();
+      }
       var js = document.createElement("script");
       js.type = "module";
       js.src = "./dist/admin.iief.js";
       js.async = true;
       document.body.appendChild(js);
+
+      var js2 = document.createElement("script");
+      js2.type = "module";
+      js2.src = "./dist/index.iief.js";
+      js2.async = true;
+      document.body.appendChild(js2);
     </script>
   </body>
 </html>

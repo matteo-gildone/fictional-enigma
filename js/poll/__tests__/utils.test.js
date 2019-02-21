@@ -1,4 +1,4 @@
-import { noop, shuffle, slugify } from "../../utils.js";
+import { noop, shuffle, slugify, guidGenerator } from "../../utils.js";
 
 test("Should return undefined", () => {
   expect(noop()).toEqual(undefined);
@@ -19,5 +19,11 @@ test("Should ignore special characters", () => {
 test("Should ignore special characters", () => {
   const actual = shuffle([1, 2, 3, 4, 5]);
   const expected = 5;
+  expect(actual.length).toEqual(expected);
+});
+
+test("Should generate a random id", () => {
+  const actual = guidGenerator();
+  const expected = 36;
   expect(actual.length).toEqual(expected);
 });

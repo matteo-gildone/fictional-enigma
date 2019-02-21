@@ -1,37 +1,6 @@
 var Poll = (function(exports) {
   "use strict";
 
-  var noop = function noop() {};
-  var shuffle = function shuffle(arr) {
-    var options = arr.slice();
-    return options
-      .map(function(a) {
-        return [Math.random(), a];
-      })
-      .sort(function(a, b) {
-        return a[0] - b[0];
-      })
-      .map(function(a) {
-        return a[1];
-      });
-  };
-  var slugify = function slugify(string) {
-    var a = "àáäâãåèéëêìíïîòóöôùúüûñçßÿœæŕśńṕẃǵǹḿǘẍźḧ·/_,:;";
-    var b = "aaaaaaeeeeiiiioooouuuuncsyoarsnpwgnmuxzh------";
-    var p = new RegExp(a.split("").join("|"), "g");
-    return string
-      .toString()
-      .toLowerCase()
-      .replace(/\s+/g, "-") // Replace spaces with
-      .replace(p, function(c) {
-        return b.charAt(a.indexOf(c));
-      }) // Replace special characters
-      .replace(/&/g, "-and-") // Replace & with ‘and’
-      .replace(/[^\w\-]+/g, "") // Remove all non-word characters
-      .replace(/\-\-+/g, "-") // Replace multiple — with single -
-      .replace(/^-+/, ""); // Trim — from start of text .replace(/-+$/, '') // Trim — from end of text
-  };
-
   function createStore(reducer) {
     var initialState =
       arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
@@ -351,6 +320,37 @@ var Poll = (function(exports) {
     }
   };
 
+  var noop = function noop() {};
+  var shuffle = function shuffle(arr) {
+    var options = arr.slice();
+    return options
+      .map(function(a) {
+        return [Math.random(), a];
+      })
+      .sort(function(a, b) {
+        return a[0] - b[0];
+      })
+      .map(function(a) {
+        return a[1];
+      });
+  };
+  var slugify = function slugify(string) {
+    var a = "àáäâãåèéëêìíïîòóöôùúüûñçßÿœæŕśńṕẃǵǹḿǘẍźḧ·/_,:;";
+    var b = "aaaaaaeeeeiiiioooouuuuncsyoarsnpwgnmuxzh------";
+    var p = new RegExp(a.split("").join("|"), "g");
+    return string
+      .toString()
+      .toLowerCase()
+      .replace(/\s+/g, "-") // Replace spaces with
+      .replace(p, function(c) {
+        return b.charAt(a.indexOf(c));
+      }) // Replace special characters
+      .replace(/&/g, "-and-") // Replace & with ‘and’
+      .replace(/[^\w\-]+/g, "") // Remove all non-word characters
+      .replace(/\-\-+/g, "-") // Replace multiple — with single -
+      .replace(/^-+/, ""); // Trim — from start of text .replace(/-+$/, '') // Trim — from end of text
+  };
+
   var label = tags.label,
     input = tags.input,
     li = tags.li,
@@ -395,7 +395,10 @@ var Poll = (function(exports) {
   };
 
   var viewOptions = function viewOptions(state) {
-    var optionList = state.options.split(", ").map(function(option) {
+    var options = state.shuffle
+      ? shuffle(state.options.split(", "))
+      : state.options.split(", ");
+    var optionList = options.map(function(option) {
       return li({
         class: "c-survey__item c-survey__checkbox"
       })([
@@ -592,11 +595,6 @@ var Poll = (function(exports) {
           reducer(registerVote, sendEventToGa)
         );
         store.subscribe(render(container));
-
-        if (settings.data.shuffle) {
-          settings.data.options = shuffle(settings.data.options);
-        }
-
         store.dispatch({
           type: "INIT",
           payload: settings.data

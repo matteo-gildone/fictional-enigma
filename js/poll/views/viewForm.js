@@ -10,7 +10,7 @@ const viewForm = (state, dispatch, children = []) => {
     typeof dispatch === "function"
   ) {
     return div({
-      class: `c-survey`
+      class: "c-survey"
     })([
       form({ id: "survey-form", submit: submitForm(dispatch) })(
         children.map(child => child(state, dispatch))
@@ -18,7 +18,7 @@ const viewForm = (state, dispatch, children = []) => {
     ]);
   } else {
     return div({
-      class: `c-survey`
+      class: "c-survey"
     })({ text: "No questions added." });
   }
 };

@@ -1,9 +1,4 @@
-import { viewAdmin } from "./views/viewAdmin.js";
-
-const render = container => store => {
-  if (container) {
-    container.appendChild(viewAdmin(store));
-  }
-};
-
-render(document.getElementById("admin"))({});
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+ReactDOM.render(<App />, document.getElementById("root"));
