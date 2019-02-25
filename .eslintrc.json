@@ -28,6 +28,7 @@
     "semi": ["error", "always"],
     "no-console": "off",
     "no-useless-escape": "off",
-    "no-unused-vars": ["error", { "varsIgnorePattern": "Poll" }]
+    "no-unused-vars": ["error", { "varsIgnorePattern": "Poll" }],
+    "react/prop-types": "off"
   }
 }

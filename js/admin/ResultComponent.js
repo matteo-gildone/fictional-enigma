@@ -43,9 +43,4 @@ ResultComponent.defaultProps = {
   display: "col-md-12 mb-3"
 };
 
-ResultComponent.propTypes = {
-  display: PropTypes.string.isRequired,
-  poll: PropTypes.isRequired
-};
-
 export { ResultComponent };

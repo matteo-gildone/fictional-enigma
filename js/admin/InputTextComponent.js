@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 class InputTextComponent extends React.Component {
   constructor(props) {
@@ -7,7 +6,8 @@ class InputTextComponent extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
   handleChange(e) {
-    this.props.handleChange(e.target.id, e.target.value);
+    const { id, value } = e.target;
+    this.props.handleChange(id, value);
   }
   render() {
     return (
@@ -38,16 +38,8 @@ class InputTextComponent extends React.Component {
 }
 
 InputTextComponent.defaultProps = {
-  display: "col-md-12 mb-3"
-};
-
-InputTextComponent.propTypes = {
-  id: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  value: PropTypes.string,
-  display: PropTypes.string,
-  helpText: PropTypes.string,
-  handleChange: PropTypes.isRequired
+  display: "col-md-12 mb-3",
+  handleChange: () => {}
 };
 
 export { InputTextComponent };

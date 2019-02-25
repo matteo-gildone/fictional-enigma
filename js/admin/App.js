@@ -82,7 +82,7 @@ class App extends React.Component {
                     Poll
                   </legend>
                   <InputTextComponent
-                    label="Title"
+                    label="Title/Description"
                     id="title"
                     value={this.state.title}
                     handleChange={this.handleChange}
@@ -113,7 +113,7 @@ class App extends React.Component {
               <fieldset className="form-group">
                 <div className="row">
                   <legend className="col-form-label col-sm-12 pt-0">
-                    Questions
+                    Settings
                   </legend>
                   {questions}
                 </div>

@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 class TextAreaComponent extends React.Component {
   constructor(props) {
@@ -41,16 +40,6 @@ class TextAreaComponent extends React.Component {
 TextAreaComponent.defaultProps = {
   display: "col-md-12 mb-3",
   disabled: false
-};
-
-TextAreaComponent.propTypes = {
-  id: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  value: PropTypes.string,
-  display: PropTypes.string,
-  helpText: PropTypes.string,
-  handleChange: PropTypes.isRequired,
-  disabled: PropTypes.isRequired
 };
 
 export { TextAreaComponent };

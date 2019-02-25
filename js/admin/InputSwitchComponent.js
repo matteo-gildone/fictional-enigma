@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 class InputSwitchComponent extends React.Component {
   constructor(props) {
@@ -28,15 +27,6 @@ class InputSwitchComponent extends React.Component {
 
 InputSwitchComponent.defaultProps = {
   display: "col-md-12 mb-3"
-};
-
-InputSwitchComponent.propTypes = {
-  id: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  value: PropTypes.string,
-  display: PropTypes.string,
-  helpText: PropTypes.string,
-  handleChange: PropTypes.isRequired
 };
 
 export { InputSwitchComponent };

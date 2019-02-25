@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { InputTextComponent } from "./InputTextComponent";
 import { InputSwitchComponent } from "./InputSwitchComponent";
 
@@ -14,9 +13,9 @@ class QuestionComponent extends React.Component {
   render() {
     return (
       <div>
-        <div className="col-sm-12">
+        <div className="col-md-12 mb-3">
           <InputSwitchComponent
-            label="Shuffle options"
+            label="Randomise the order of answers"
             id={`shuffle-${this.props.index}`}
             handleChange={this.handleChange}
           />
@@ -26,43 +25,29 @@ class QuestionComponent extends React.Component {
             handleChange={this.handleChange}
           />
           <InputSwitchComponent
-            label="Multiple choice"
+            label="Allow multiple answers to be selected"
             id={`multiple-${this.props.index}`}
             handleChange={this.handleChange}
           />
         </div>
-        <InputTextComponent
-          label="Question"
-          id={`text-${this.props.index}`}
-          value={this.props.question.text}
-          handleChange={this.handleChange}
-        />
-        <InputTextComponent
-          label="Options"
-          id={`options-${this.props.index}`}
-          value={this.props.question.options}
-          handleChange={this.handleChange}
-          helpText="Insert your options comma separated, eg 'News, Research Analysis, Book & Culture'"
-        />
+        <div className="">
+          <InputTextComponent
+            label="Question"
+            id={`text-${this.props.index}`}
+            value={this.props.question.text}
+            handleChange={this.handleChange}
+          />
+          <InputTextComponent
+            label="Answers"
+            id={`options-${this.props.index}`}
+            value={this.props.question.options}
+            handleChange={this.handleChange}
+            helpText="Insert your options comma separated, eg 'News, Research Analysis, Book & Culture'"
+          />
+        </div>
       </div>
     );
   }
 }
-
-QuestionComponent.defaultProps = {
-  display: "col-md-12 mb-3"
-};
-
-QuestionComponent.propTypes = {
-  id: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  value: PropTypes.string,
-  display: PropTypes.string,
-  helpText: PropTypes.string,
-  handleChange: PropTypes.isRequired,
-  options: PropTypes.string,
-  question: PropTypes.string,
-  index: PropTypes.string
-};
 
 export { QuestionComponent };
