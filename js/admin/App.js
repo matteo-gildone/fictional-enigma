@@ -119,12 +119,6 @@ class App extends React.Component {
                 </div>
               </fieldset>
               <hr className="mb-4" />
-              {/* <button
-                className="btn btn-primary btn-lg btn-block"
-                type="submit"
-              >
-                Generate poll
-              </button> */}
             </form>
             <ResultComponent poll={this.state} />
           </div>
