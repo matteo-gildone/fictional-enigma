@@ -155,9 +155,9 @@
         )}, event_label: ${state.survey.doi}:${state.survey.articleType} })`
       );
       registerVote(state);
-      gtag("event", "survey-1", {
+      window.gtag("event", "survey-1", {
         event_category: elements.join(", "),
-        event_label: `${params.doi}:${params.articleType}`
+        event_label: `${state.survey.doi}:${state.survey.articleType}`
       });
     };
     const viewTitle = function(state) {
@@ -214,7 +214,7 @@
       );
     };
 
-    const viewSubmitButton = function(state) {
+    const viewSubmitButton = function() {
       return button({ class: "c-survey__submit", type: "submit" })({
         text: "Confirm"
       });
@@ -285,7 +285,7 @@
     };
   };
   if ("Proxy" in window) {
-    surveyList.forEach(function(survey) {
+    window.surveyList.forEach(function(survey) {
       survey.survey.vote = isPollVoted(survey.survey.doi)
         ? survey.survey.doi
         : "";
